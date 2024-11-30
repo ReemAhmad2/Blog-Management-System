@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthContoller;
+use App\Http\Controllers\BlogContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
 });
+
+Route::get('/login', [AuthContoller::class, 'login_form'])->name('login.form');
+Route::post('/login', [AuthContoller::class, 'login'])->name('login');
+
+Route::resource('blog', BlogContoller::class);
